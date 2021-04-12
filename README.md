@@ -20,17 +20,17 @@
 
 ## items テーブル
 
-| Column          | Type         | Options                        |
-| --------------- | ------------ | ------------------------------ |
-| name            | string       | null: false                    |
-| price           | integer      | null: false                    |
-| description     | text         | null: false                    |
-| category        | integer      | null: false                    |
-| condition       | integer      | null: false                    |
-| shipping_charge | integer      | null: false,                   |
-| shipping_source | integer      | null: false,                   |
-| shipping_date   | integer      | null: false,                   |
-| user            | references   | null: false, foreign_key: true |
+| Column              | Type         | Options                        |
+| ------------------- | ------------ | ------------------------------ |
+| name                | string       | null: false                    |
+| price               | integer      | null: false                    |
+| description         | text         | null: false                    |
+| category_id         | integer      | null: false                    |
+| condition_id        | integer      | null: false                    |
+| shipping_charge_id  | integer      | null: false,                   |
+| shipping_source_id  | integer      | null: false,                   |
+| shipping_date_id    | integer      | null: false,                   |
+| user                | references   | null: false, foreign_key: true |
 
 ### Association
 
@@ -56,7 +56,7 @@
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
 | zip_code      | string     | null: false                    |
-| prefecture    | integer    | null: false                    |
+| prefecture_id | integer    | null: false                    |
 | city          | string     | null: false                    |
 | address       | string     | null: false                    |
 | building      | string     |                                |
