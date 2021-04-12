@@ -2,14 +2,16 @@
 
 ## users テーブル
 
-| Column          | Type   | Options                    |
-| --------------- | ------ | -------------------------- |
-| email           | string | null: false, unique: true  |
-| password        | string | null: false                |
-| nick_name       | string | null: false, unique: true  |
-| kanji_name      | string | null: false                |
-| katakana_name   | string | null: false                |
-| date_of_birth   | date   | null: false                |
+| Column                | Type   | Options                    |
+| --------------------- | ------ | -------------------------- |
+| email                 | string | null: false, unique: true  |
+| encrypted_password    | string | null: false                |
+| nick_name             | string | null: false, unique: true  |
+| kanji_family_name     | string | null: false                |
+| kanji_given_name      | string | null: false                |
+| katakana_family_name  | string | null: false                |
+| katakana_given_name   | string | null: false                |
+| date_of_birth         | date   | null: false                |
 
 ### Association
 
@@ -22,13 +24,12 @@
 | --------------- | ------------ | ------------------------------ |
 | name            | string       | null: false                    |
 | price           | integer      | null: false                    |
-| image           | ActiveStrage | null: false                    |
 | description     | text         | null: false                    |
-| category        | string       | null: false                    |
-| condition       | string       | null: false                    |
-| shipping_charge | string       | null: false,                   |
-| shipping_source | string       | null: false,                   |
-| shipping_date   | string       | null: false,                   |
+| category        | integer      | null: false                    |
+| condition       | integer      | null: false                    |
+| shipping_charge | integer      | null: false,                   |
+| shipping_source | integer      | null: false,                   |
+| shipping_date   | integer      | null: false,                   |
 | user            | references   | null: false, foreign_key: true |
 
 ### Association
@@ -54,9 +55,12 @@
 
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
-| zip_code      | integer    | null: false                    |
+| zip_code      | string     | null: false                    |
+| prefecture    | integer    | null: false                    |
+| city          | string     | null: false                    |
 | address       | string     | null: false                    |
-| phone_number  | integer    | null: false                    |
+| building      | string     |                                |
+| phone_number  | string     | null: false                    |
 | order         | references | null: false, foreign_key: true |
 
 ### Association
