@@ -110,6 +110,11 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include "Password is invalid. Input half-width number & characters."
       end
+      it 'emailに@が含まれていない場合、登録できないこと' do
+        @user.email = 'sample.samp.com'
+        @user.valid?
+        expect(@user.errors.full_messages).to include "Email is invalid"
+      end
     end
   end
 end
