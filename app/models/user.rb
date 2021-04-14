@@ -17,4 +17,6 @@ class User < ApplicationRecord
     validates :date_of_birth
   end
   validates :password, format: { with: /(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{7,}/, message: "is invalid. Input half-width number & characters."}
+
+  has_many :items
 end
