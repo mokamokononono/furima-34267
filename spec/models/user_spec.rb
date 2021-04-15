@@ -57,63 +57,63 @@ RSpec.describe User, type: :model do
         another_user = FactoryBot.build(:user)
         another_user.email = @user.email
         another_user.valid?
-        expect(another_user.errors.full_messages).to include "Email has already been taken"
+        expect(another_user.errors.full_messages).to include 'Email has already been taken'
       end
       it '重複したnick_nameが存在する場合登録できない' do
         @user.save
         another_user = FactoryBot.build(:user)
         another_user.nick_name = @user.nick_name
         another_user.valid?
-        expect(another_user.errors.full_messages).to include "Nick name has already been taken"
+        expect(another_user.errors.full_messages).to include 'Nick name has already been taken'
       end
       it 'passwordが5文字以下では登録できない' do
         @user.password = '123ab'
         @user.password_confirmation = '123ab'
         @user.valid?
-        expect(@user.errors.full_messages).to include "Password is too short (minimum is 6 characters)"
+        expect(@user.errors.full_messages).to include 'Password is too short (minimum is 6 characters)'
       end
       it '名字は漢字・ひらがな・カタカナ以外では登録できない' do
         @user.kanji_family_name = 'Hawking'
         @user.valid?
-        expect(@user.errors.full_messages).to include "Kanji family name is invalid. Input full-width characters."
+        expect(@user.errors.full_messages).to include 'Kanji family name is invalid. Input full-width characters.'
       end
       it '名前は漢字・ひらがな・カタカナ以外では登録できない' do
         @user.kanji_given_name = 'Michael'
         @user.valid?
-        expect(@user.errors.full_messages).to include "Kanji given name is invalid. Input full-width characters."
+        expect(@user.errors.full_messages).to include 'Kanji given name is invalid. Input full-width characters.'
       end
       it '名字（ふりがな）はカタカナ以外では登録できない' do
         @user.katakana_family_name = '山田'
         @user.valid?
-        expect(@user.errors.full_messages).to include "Katakana family name is invalid. Input full-width katakana characters."
+        expect(@user.errors.full_messages).to include 'Katakana family name is invalid. Input full-width katakana characters.'
       end
       it '名前（ふりがな）はカタカナ以外では登録できない' do
         @user.katakana_given_name = 'はなこ'
         @user.valid?
-        expect(@user.errors.full_messages).to include "Katakana given name is invalid. Input full-width katakana characters."
+        expect(@user.errors.full_messages).to include 'Katakana given name is invalid. Input full-width katakana characters.'
       end
       it 'パスワードは英字のみでは登録できない' do
         @user.password = 'abcdefg'
         @user.password_confirmation = 'abcdefj'
         @user.valid?
-        expect(@user.errors.full_messages).to include "Password is invalid. Input half-width number & characters."
+        expect(@user.errors.full_messages).to include 'Password is invalid. Input half-width number & characters.'
       end
       it 'パスワードは数字のみでは登録できない' do
         @user.password = '1234567890'
         @user.password_confirmation = '1234567890'
         @user.valid?
-        expect(@user.errors.full_messages).to include "Password is invalid. Input half-width number & characters."
+        expect(@user.errors.full_messages).to include 'Password is invalid. Input half-width number & characters.'
       end
       it 'パスワードは全角では登録できない' do
         @user.password = '全角のパスワード'
         @user.password_confirmation = '全角のパスワード'
         @user.valid?
-        expect(@user.errors.full_messages).to include "Password is invalid. Input half-width number & characters."
+        expect(@user.errors.full_messages).to include 'Password is invalid. Input half-width number & characters.'
       end
       it 'emailに@が含まれていない場合、登録できないこと' do
         @user.email = 'sample.samp.com'
         @user.valid?
-        expect(@user.errors.full_messages).to include "Email is invalid"
+        expect(@user.errors.full_messages).to include 'Email is invalid'
       end
     end
   end
