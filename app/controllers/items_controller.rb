@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :move_to_signin, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
     # @items = Item.order("created_at DESC") //（メモ）商品表示機能で利用するかも
@@ -19,10 +19,6 @@ class ItemsController < ApplicationController
   end
 
   private
-
-  def move_to_signin
-    redirect_to new_user_session_path unless user_signed_in?
-  end
 
   def item_params
     params.require(:item).permit(:name, :price, :description, :image, :category_id, :condition_id, :shipping_charge_id,
