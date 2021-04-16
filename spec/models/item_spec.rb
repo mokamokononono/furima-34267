@@ -69,6 +69,11 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include 'Price is invalid. Input half-width numbers'
       end
+      it 'priceが半角英文字のみでは登録できない' do
+        @item.price = 'aabfcc'
+        @item.valid?
+        expect(@item.errors.full_messages).to include 'Price is invalid. Input half-width numbers'
+      end
       it 'priceが300未満であれば登録できない' do
         @item.price = 299
         @item.valid?
