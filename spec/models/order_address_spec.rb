@@ -7,18 +7,15 @@ RSpec.describe OrderAddress, type: :model do
       item = FactoryBot.create(:item)
       @order_address = FactoryBot.build(:order_address, user_id: user.id, item_id: item.id)
       sleep(0.05)
-      # @order_address = FactoryBot.build(:order_address)
     end
 
     context '内容に問題ない場合' do
       it 'すべての値が正しく入力されていれば保存できること' do
         @order_address.errors.full_messages
-        # binding.pry
         expect(@order_address).to be_valid
       end
       it 'building_nameは空でも保存できること' do
         @order_address.building = ''
-        # binding.pry
         expect(@order_address).to be_valid
       end
     end
@@ -32,7 +29,6 @@ RSpec.describe OrderAddress, type: :model do
       it 'zip_codeが半角のハイフンを含んだ正しい形式でないと保存できないこと' do
         @order_address.zip_code = '1234567'
         @order_address.valid?
-        # binding.pry
         expect(@order_address.errors.full_messages).to include('Zip code is invalid. Include hyphen(-)')
       end
       it 'zip_codeが全角だと保存できないこと' do
@@ -70,7 +66,11 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include('Phone number is invalid. Input phone_number with in 11 character')
       end
-
+      it ' 英数混合では登録できないこと' do
+        @order_address.phone_number = '090abcd1234'
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include('Phone number is invalid. Input half-width numbers')
+      end
       it 'tokenが空では登録できないこと' do
         @order_address.token = nil
         @order_address.valid?
