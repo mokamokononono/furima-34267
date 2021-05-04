@@ -1,8 +1,8 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :move_to_index, except: [:index, :new, :create, :show]
-
   before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :move_to_index_other_user, except: [:index, :new, :create, :show]
+  before_action :move_to_index_ordered_item, except: [:index, :new, :create, :show]
 
   def index
     @items = Item.order('created_at DESC')
@@ -47,8 +47,12 @@ class ItemsController < ApplicationController
                                  :shipping_source_id, :shipping_date_id).merge(user_id: current_user.id)
   end
 
-  def move_to_index
-    redirect_to action: :index unless current_user.id == Item.find(params[:id]).user.id
+  def move_to_index_other_user
+    redirect_to action: :index unless current_user.id == @item.user.id
+  end
+
+  def move_to_index_ordered_item
+    redirect_to action: :index unless @item.order.nil?
   end
 
   def set_item
