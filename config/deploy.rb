@@ -15,7 +15,10 @@ set :rbenv_type, :user
 set :rbenv_ruby, '2.6.5'
 
 # どの公開鍵を利用してデプロイするか
-set :ssh_options, auth_methods: ['publickey'],keys: ['~/.ssh/shinywing.pem'] 
+set :ssh_options, auth_methods: ['publickey'],
+                                  keys: ['~/.ssh/shinywing.pem'] 
+
+
 
 # プロセス番号を記載したファイルの場所
 set :unicorn_pid, -> { "#{shared_path}/tmp/pids/unicorn.pid" }
